@@ -1,0 +1,43 @@
+{
+  "name": "monolith",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel index.js --out-dir dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/restorando/monolith.git"
+  },
+  "keywords": [
+    "statsd",
+    "monolith",
+    "express"
+  ],
+  "contributors": [
+    "José Fresco <jose@restorando.com>"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/restorando/monolith/issues"
+  },
+  "homepage": "https://github.com/restorando/monolith#readme",
+  "dependencies": {
+    "express-statsd": "restorando/express-statsd#master"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.3.17",
+    "babel-core": "^6.3.17",
+    "babel-eslint": "^4.1.6",
+    "babel-loader": "^6.2.0",
+    "babel-polyfill": "^6.3.14",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-stage-0": "^6.3.13",
+    "babel-runtime": "^6.3.19",
+    "eslint": "^1.10.3",
+    "eslint-config-standard": "^4.4.0",
+    "eslint-plugin-standard": "^1.3.1"
+  }
+}

@@ -48,7 +48,7 @@ export const middleware = ({ appName, host, port, queueHeader }) => expressStats
      */
 
     const getQueueDuration = () => req.header(queueHeader)
-      ? new Date().getTime() - req.headers(queueHeader)
+      ? new Date().getTime() - req.header(queueHeader)
       : null
 
     /* Get and normalize the request method (e.g., `'get'`, `'post'`, `'put'`) */
@@ -70,10 +70,10 @@ export const middleware = ({ appName, host, port, queueHeader }) => expressStats
     /* Report the time of the request duration (e.g., `redo-graphql.request.post.graphql:4|ms`) */
     client.timing(metricName, getRequestDuration())
 
-    /* Report the time the request has been in queue (e.g., `redo-graphql.request.post.graphql.request.queue:5|ms`) */
+    /* Report the time the request has been in queue (e.g., `redo-graphql.request.post.graphql.queue:5|ms`) */
     const queueDuration = getQueueDuration()
     if (queueDuration) {
-      client.timing(`${metricName}.request.queue`, queueDuration)
+      client.timing(`${metricName}.queue`, queueDuration)
     }
   }
 })

@@ -48,7 +48,7 @@ export const middleware = ({ appName, host, port, queueHeader }) => expressStats
      */
 
     const getQueueDuration = () => req.header(queueHeader)
-      ? new Date().getTime() - req.headers(queueHeader)
+      ? new Date().getTime() - req.header(queueHeader)
       : null
 
     /* Get and normalize the request method (e.g., `'get'`, `'post'`, `'put'`) */

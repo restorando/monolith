@@ -1,10 +1,10 @@
 {
   "name": "redo-monolith",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "",
   "main": "./dist/index.js",
   "scripts": {
-    "build": "babel index.js --out-dir dist",
+    "prepublish": "babel src --out-dir dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/restorando/monolith#readme",
   "dependencies": {
-    "express-statsd": "restorando/express-statsd#master"
+    "lynx": "^0.2.0"
   },
   "devDependencies": {
     "babel-cli": "^6.3.17",

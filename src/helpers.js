@@ -31,11 +31,13 @@ export const getStatusType = statusCode => {
 export const getRequestDuration = startTime => new Date().getTime() - startTime
 
 /**
- * Gets the time in ms since the request has been enqueued in the web server
+ * Gets the time in ms since the request has been enqueued in the web server.
+ * It is assumed that the `queueHeader` has the value in the format `t=123` where `123` is the time in ms
+ * since epoch.
  *
  * @return {Number} The time in ms since the request has been enqueued
  */
 
 export const getQueueDuration = (req, queueHeader) => req.header(queueHeader)
-  ? new Date().getTime() - req.header(queueHeader)
+  ? new Date().getTime() - (+req.header(queueHeader).replace('t=', ''))
   : null

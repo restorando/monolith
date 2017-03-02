@@ -1,3 +1,5 @@
+import microtime from 'microtime'
+
 /**
  * Gets a keyword describing an HTTP status code
  *
@@ -31,11 +33,19 @@ export const getStatusType = statusCode => {
 export const getRequestDuration = startTime => new Date().getTime() - startTime
 
 /**
- * Gets the time in ms since the request has been enqueued in the web server
+ * Gets the time in ms since the request has been enqueued in the web server.
+ * It is assumed that the `queueHeader` has the value in the format `t=123456.7890` where `123456.7890` is the
+ * time in ms since epoch.
  *
  * @return {Number} The time in ms since the request has been enqueued
  */
 
-export const getQueueDuration = (req, queueHeader) => req.header(queueHeader)
-  ? new Date().getTime() - req.header(queueHeader)
-  : null
+export const getQueueDuration = (req, queueHeader) => {
+  if (!req.header(queueHeader)) {
+    return
+  }
+
+  const queueTime = +req.header(queueHeader).replace('t=', '')
+  const now = microtime.nowDouble()
+  return now - queueTime
+}

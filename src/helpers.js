@@ -40,12 +40,11 @@ export const getRequestDuration = startTime => new Date().getTime() - startTime
  * @return {Number} The time in ms since the request has been enqueued
  */
 
-export const getQueueDuration = (req, queueHeader) => {
+export const getQueueDuration = (req, queueHeader, startTime) => {
   if (!req.header(queueHeader)) {
     return
   }
 
   const queueTime = +req.header(queueHeader).replace('t=', '')
-  const now = microtime.nowDouble()
-  return now - queueTime
+  return startTime - queueTime
 }

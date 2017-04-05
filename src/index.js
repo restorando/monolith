@@ -1,4 +1,5 @@
 import Lynx from 'lynx'
+import microtime from 'microtime'
 import { getQueueDuration, getRequestDuration, getStatusType } from './helpers'
 
 const noop = () => undefined
@@ -7,11 +8,11 @@ export default ({ host, port, queueHeader }) => {
   const client = new Lynx(host, port)
 
   const middleware = ({ send = noop } = {}) => (req, res, next) => {
-    const startTime = new Date().getTime()
+    const startTime = microtime.nowDouble()
 
     const sendData = () => send({
       client,
-      queueDuration: getQueueDuration(req, queueHeader),
+      queueDuration: getQueueDuration(req, queueHeader, startTime),
       requestDuration: getRequestDuration(startTime),
       status: getStatusType(res.statusCode.toString()),
       req,

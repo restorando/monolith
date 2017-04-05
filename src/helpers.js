@@ -30,7 +30,7 @@ export const getStatusType = statusCode => {
  * @return {Number} Time in ms since the request started
  */
 
-export const getRequestDuration = startTime => new Date().getTime() - startTime
+export const getRequestDuration = startTime => microtime.nowDouble() - startTime
 
 /**
  * Gets the time in ms since the request has been enqueued in the web server.
